@@ -1,0 +1,157 @@
+/* Cool Timeline styles
+----------------------------------------------------------------- */
+
+.twae-wrapper {
+
+    /* Horizontal styles */
+    /* Vertical (One Sided) styles */
+    /* Vertical (Both Sided) styles */
+    .twae-timeline-entry {
+        min-height: 57px;
+    }
+    .twae-timeline-centered:before {
+        width: 9px;
+        margin-left: -4.5px; 
+    }
+    &.twae-vertical:after, &.twae-vertical:before {
+        display: none;
+    }
+    .twae-timeline-centered .twae-timeline-entry .twae-timeline-entry-inner {
+        margin-left: -24px;
+    }
+    .twae-one-sided-timeline.twae-one-sided-timeline .twae-timeline-entry .twae-timeline-entry-inner .twae-icon,
+    .twae-timeline-centered .twae-timeline-entry .twae-timeline-entry-inner .twae-icon {
+        transition: .3s all;
+    }
+    .twae-label-extra-label span.twae-label {
+        font-weight: 300;
+        font-size: 18px;
+    }
+    .twae-label-extra-label span.twae-extra-label {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    .twae-timeline-centered.twae-timeline-sm:not(.twae-one-sided-timeline) .twae-timeline-entry {
+        margin-bottom: 10px!important;
+    }
+    .twae-timeline-centered.twae-timeline-sm.twae-one-sided-timeline .twae-timeline-entry {
+        margin-bottom: 30px!important; 
+    }
+    &.twae-vertical .twae-timeline-centered .twae-timeline-entry .twae-timeline-entry-inner .twae-label-extra-label:before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        width: 41px;
+        height: 1px;
+        top: 50%;
+        right: 0px;
+        margin-top: -10px;
+    }
+    &.twae-vertical .twae-timeline-centered .twae-timeline-entry.twae-left-aligned .twae-timeline-entry-inner .twae-label-extra-label:before {
+        left: 0;
+        right: auto;
+    }
+    &.twae-vertical .twae-timeline-centered .twae-timeline-entry .twae-timeline-entry-inner .twae-label-extra-label {
+        padding-right: calc(10px + 41px);
+    }
+    &.twae-vertical .twae-timeline-centered .twae-timeline-entry.twae-left-aligned .twae-timeline-entry-inner .twae-label-extra-label {
+        padding-left: calc(10px + 41px);
+        padding-right: 0;
+    }
+    .twae-timeline-centered.twae-one-sided-timeline .twae-timeline-entry .twae-timeline-entry-inner .twae-label-extra-label {
+        left: 0;
+    }
+    .twae-timeline-centered .twae-timeline-entry .twae-timeline-entry-inner .twae-extra-label {
+        margin-left: auto;
+    }
+    .twae-timeline-centered .twae-timeline-entry.twae-left-aligned .twae-timeline-entry-inner .twae-extra-label {
+        margin-right: auto;
+        margin-left: 0;
+    }
+    &.twae-vertical.twae-centered .twae-extra-label {
+        max-width: 256px;
+    }
+
+    .twae-arrow {
+        position: relative !important;
+    }
+
+    &.twae-vertical .twae-end,
+    &.twae-vertical .twae-start {
+        display: none !important;
+    }
+
+    &.twae-vertical .twae-timeline {
+        padding: 0px 0 15px !important;
+    }
+
+    &.twae-vertical .twae-labels {
+        top: 0 !important;
+    }
+    &.twae-vertical .twae-story {
+        margin-bottom: 20px;
+    }
+}
+
+/* Version 1.4 */
+.twae-horizontal-timeline.twae-wrapper{
+    --tw-cbx-bg: transparent;
+    --tw-cbx-bd-left-width: 0px;
+    --tw-line-width: 9px;
+    --tw-lbl-big-size: 18px;
+    --tw-lbl-big-weight: 300;
+    --tw-lbl-small-size: 18px;
+    --tw-lbl-small-weight: 400;
+    --tw-cbx-bottom-margin: 20px;
+    .twae-content{
+        bottom: none;
+    }
+}
+.twae-vertical.twae-wrapper{
+    --tw-cbx-bg: transparent;
+    --tw-cbx-bd-left-width: 0px;
+    --tw-line-width: 9px;
+    --tw-ibx-radius: 0;
+    --tw-lbl-big-size: 18px;
+    --tw-lbl-big-weight: 300;
+    --tw-lbl-small-size: 18px;
+    --tw-lbl-small-weight: 400;
+    --tw-cbx-bottom-margin: 20px;
+    --tw-ibx-size: 95px;
+    .twae-timeline{
+        padding: 20px 0 60px;
+    }
+    .twae-labels:before{
+        content: '';
+        display: inline-block;
+        position: absolute;
+        width: 41px;
+        height: 1px;
+        top: 50%;
+        right: -55px;
+    }
+    .twae-story-left .twae-labels:before{
+        left: -55px;
+        right: auto;
+    }
+    .twae-icondot,
+    .twae-end, 
+    .twae-start{
+        width: 0;
+        border: 0;
+        &:after{
+            height: 0;
+        }
+    }
+    .twae-label-small{
+        margin-top: 5px;
+        white-space: normal;
+        line-height: 1.5em;
+    }
+    @media (max-width: 479px) {
+        --tw-ibx-size: 35px;
+        .twae-labels:before{
+            display: none;
+        }
+    }
+}

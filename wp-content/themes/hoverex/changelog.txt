@@ -1,0 +1,232 @@
+Version 1.5.10
+    Added:
+        - WP 6.7.1 compatibility
+
+    Fixed:
+        - Improve theme styles
+        - Update plugins to their latest version
+        - Scripts libraries are updated
+
+    Changed:
+        - Update demo data
+
+Version 1.5.9
+    Added:
+        - WP 6.6.1 compatibility
+        - Added: TikTok & Twitter (x) icons
+
+    Fixed:
+        - Improve theme styles
+        - Update plugins to their latest version
+        - Scripts libraries are updated
+
+    Changed:
+        - Update demo data
+    
+    Removed:
+        - elegro Crypto Payment plugin
+
+Version 1.5.8
+	Added:
+		- Compatibility with The GDPR Framework plugin
+
+	Fixed:
+		- Update plugins to their latest versions
+
+	Changed:
+		- Update demo data
+
+Version 1.5.7
+	Added:
+		- WP 6.4.3 compatibility
+
+	Fixed:
+		- Update plugins to their latest versions
+
+	Changed:
+		- Update demo data
+
+Version 1.5.6
+    Removed:
+        - Cryptocurrency All-in-One plugin
+
+    Fixed:
+       - Update plugins to their latest versions
+       - Improve theme styles
+       
+    Changed:
+        - Update demo data
+
+Version 1.5.5
+    Added:
+        - WP 6.2 compatibility
+
+    Fixed:
+       - Update plugins to their latest versions
+       - Improve theme styles
+
+Version 1.5.4
+	Fixed:
+		- Import Essential Grid 3.0.17+ plugin
+		- Update plugins to their latest versions
+
+Version 1.5.3
+    Added:
+        - WP 6.0.3 compatibility
+        - Elementor 3.7.8 compatibility
+        - Timeline Widget For Elementor 1.4 compatibility
+
+    Fixed:
+        - Update plugins to their latest versions
+        - Improve theme styles
+
+    Changed:
+        - Update demo data
+
+Version 1.5.2.1
+   Fixed:
+       - WPBakery Page Builder extensions bundle is updated
+
+Version 1.5.2
+    Fixed:
+        - Update plugins to their latest versions
+        - Improve theme styles
+
+    Added:
+        - WP 6.0.1 compatibility
+
+Version 1.5.1
+    Fixed:
+        - Update plugins to their latest versions
+
+    Added:
+        - WP 5.9 compatibility
+
+    Changed:
+        - Update demo data
+
+Version 1.5.0.1
+    Fixed:
+        - Fix ajax login register
+
+Version 1.5.0
+    Fixed:
+        - Update plugins to their latest versions
+        - Theme styles
+
+    Added:
+        - WooCommerce compatibility
+
+    Changed:
+        - Update demo data
+        - New page "NFT shop"
+
+Version 1.4.2
+    Fixed:
+        - Update plugins to their latest versions
+        - Theme styles
+        - import WPML
+
+    Added:
+        - WP 5.8.2 compatibility
+        - Timeline Widget Addon For Elementor plugin
+
+    Changed:
+        - Update demo data
+        - Changed page "home 1 elementor"
+
+    Removed:
+        - WPML Translation Management
+
+Version 1.4.1
+    Added:
+        - WP 5.8.1 compatibility
+        - PHP 8.0 compatibility
+
+    Fixed:
+        - Update plugins to their latest versions
+        - Improve theme styles
+
+    Changed:
+        - Update demo data
+
+Version 1.4.0
+    Fixed:
+        - Update plugins to their latest versions
+		- Theme styles
+
+	Added:
+    	- Elementor compatibility
+		- M Chart Highcharts Library plugin
+		- TRX Socials plugin
+		- PHP 8.0 compatibility
+
+	Changed:
+        - Update demo data
+
+	Removed
+        - Smash Balloon Instagram Feed
+
+Version 1.3.4
+    Added:
+        - WP 5.6 compatibility
+        - PHP 7.4 compatibility
+        - ThemeREX Updater plugin
+        - WP GDPR Compliance compatibility
+
+    Fixed:
+        - Update plugins to their latest versions
+
+    Changed:
+        - Update demo data
+
+Version 1.3.3
+    Added:
+        - Compatibility with WP 5.2.1
+        - Compatibility with PHP7.3
+
+    Fixed:
+        - Update plugins to their latest versions
+        - Improve theme styles
+        - Update scripts  libraries
+        - Themes Options
+        - Update plugins to their latest versions
+        - Icons layout
+
+    Changed:
+        - Update demo data
+
+Version 1.3.2
+    Fixed:
+        - WPML compatibility improved
+
+Version 1.3.1
+	Fixed:
+		- WPML support
+		- Update plugins to their latest versions
+		- Use {Y} or {{Y}} shortcode to output current year in Layouts custom post type
+	Changed:
+		- Skin installer
+
+Version 1.3
+    Add:
+        - Compatibility with MailChimp for WordPress Multilingual, WPML - Sitepress Multilingual CMS, WPML String Translation, WPML Translation Management plugins
+        - Compatibility with The GDPR Framework plugin
+        - Compatibility with Gutenberg
+        - Alert to Demo data installation
+
+    Fixed:
+        - Update documentation
+
+Version 1.2
+	Fixed:
+	All plugins updated
+	Style elements
+
+Version 1.1.0
+	Fixed plugin Give - Donation
+	Shortcode 'Blogger' is added to HotSpot
+
+Version 1.0.0
+	Release
+    
