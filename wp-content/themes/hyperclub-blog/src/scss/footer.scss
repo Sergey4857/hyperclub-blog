@@ -1,0 +1,206 @@
+@import "fonts";
+
+.footer-section {
+  width: 100%;
+  background-color: #4c01d5;
+  position: relative;
+  padding: 150px 40px 75px 40px;
+  overflow: hidden;
+  @media screen and (max-width: 768px) {
+    
+      padding: 176px 20px 40px 20px;
+    
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -84%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 139%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 768px) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: -85%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 272%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #fff;
+      margin: 0 auto;
+    }
+  }
+  .footer {
+    max-width: 720px;
+    margin: 0 auto;
+
+    .footer-logo {
+      margin: 0 auto;
+      color: #3b01a4;
+      text-align: center;
+      font-family: 'TWK800';
+      font-size: 84px;
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      margin-bottom: 100px;
+
+      @media screen and (max-width: 768px) {
+          font-size: 32px;
+          width: fit-content;
+          margin-bottom: 60px;
+        
+      }
+
+       img {
+        width: 140px;
+        height: 140px;
+        display: block;
+        margin-right: auto;
+        margin-right: 9px;
+        mix-blend-mode: luminosity;
+        @media screen and (max-width: 768px) {
+          
+            width: 54px;
+            height: 54px;
+          
+        }
+      }
+
+      span {
+        color: #a680ea;
+      }
+      
+    }
+
+
+    .footer-block {
+      display: flex;
+      justify-content: space-between;
+      @media screen and (max-width: 570px) {
+       
+          flex-direction: column;
+          gap: 25px;
+        
+      }
+
+      .footer-nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: baseline;
+        gap: 5px;
+
+        .footer-nav-link {
+          color: #fff;
+          text-align: center;
+          font-family: 'TWK600';
+          font-size: 16px;
+
+           text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  &:hover {
+    background-clip: text;
+
+    &::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+        }
+      }
+      .footer-soon-nav {
+        color: #7740e3;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-family: 'TWK600';
+        font-size: 16px;
+        align-items: baseline;
+        gap: 5px;
+        a {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-family: 'TWK600';
+          font-size: 16px;
+          .soon {
+            display: block;
+            padding: 1px 3px;
+            background-color: #dfceff;
+            color: #4c01d5;
+            border-radius: 58px;
+            font-size: 10px;
+          }
+        }
+      }
+
+      
+      
+    }
+    .footer-decor {
+      display: block;
+      height: 1px;
+      background-color: #a580ea;
+      width: 100%;
+    
+      margin: 25px 0 25px 0;
+    }
+
+    .footer-privacy-block {
+      display: flex;
+      justify-content: space-between;
+      @media screen and (max-width: 768px) {
+        
+          flex-direction: column-reverse;
+          gap: 25px;
+        
+      }
+      .footer-privacy {
+        color: #fff;
+        font-family: 'TWK400';
+        font-size: 18px;
+        line-height: 1.25;
+      }
+      .footer-privacy-links {
+        display: flex;
+        gap: 25px;
+
+        .footer-nav-link {
+          color: #fff;
+          text-align: center;
+          font-family: 'TWK600';
+          font-size: 16px;
+        }
+      }
+    }
+  
+  }
+  
+}
+
+

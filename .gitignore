@@ -30,6 +30,10 @@ wp-content/.htaccess
 # Composer
 /vendor
 
+
+/dist
+/node_modules
+
 # WP-CLI
 wp-cli.local.yml
 web/app/backups-dup-pro/
