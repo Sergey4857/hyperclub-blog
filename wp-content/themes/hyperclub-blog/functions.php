@@ -13,7 +13,7 @@ if (!defined('_S_VERSION')) {
 }
 
 
-function stellarlikes_setup()
+function hyperclub_blog_setup()
 {
 	add_theme_support('title-tag');
 	add_theme_support('post-thumbnails');
@@ -53,7 +53,7 @@ function hyperclub_blog_scripts()
 
 
 	wp_enqueue_script("jquery");
-	wp_enqueue_script('stellarlikes-main-js', get_template_directory_uri() . '/dist/main.js', array(), _S_VERSION);
+	wp_enqueue_script('hyperclub-blog-main-js', get_template_directory_uri() . '/dist/main.js', array(), _S_VERSION);
 	
 
 }
