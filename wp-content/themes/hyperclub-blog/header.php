@@ -14,8 +14,7 @@
       <a href="/" class="logo-wrap">
         <div class="logo">
           <img class="logo-image" alt="logo"
-            src="<?php echo get_template_directory_uri() . "/src/icons/logo.svg" ?>" />stellar<span
-            class="title">likes</span>
+            src="<?php echo get_template_directory_uri() . "/src/icons/logo.svg" ?>" />Hyper Club
         </div>
       </a>
 
@@ -43,12 +42,10 @@
         </a>
       </nav>
 
+      <a href="/login" class="login-button">
+        Login
+      </a>
 
-      <div class="rating">
-        <img class="ratingImg" src="<?php echo get_template_directory_uri() . "/src/icons/rating-stars.svg" ?>"
-          alt="rating-stars" />
-        <span class="rating-span">5.0</span>
-      </div>
 
       <div class="burger-button">
 
@@ -73,23 +70,6 @@
                 </a>
               </div>
             </div>
-
-            <!-- <div class="burger-wrapper">
-              <div class="burger-title">
-                Free Services
-              </div>
-              <div class="burger-block">
-                <a href="/free-tiktok-likes" class="burger-link">
-                  Free TikTok <span class="highlight-likes">Likes</span>
-                </a>
-                <a href="/free-tiktok-followers" class="burger-link">
-                  Free TikTok <span class="highlight-followers">Followers</span>
-                </a>
-                <a href="/free-tiktok-views" class="burger-link">
-                  Free TikTok <span class="highlight-views">Views</span>
-                </a>
-              </div>
-            </div> -->
 
             <div class="burger-wrapper">
               <div class="burger-title">

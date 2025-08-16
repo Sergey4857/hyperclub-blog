@@ -6,8 +6,6 @@
 @import "../front-page/_front-page-responsive.scss";
 @import "../theme-specific/theme-hovers/_theme-hovers-responsive.scss";
 @import "../plugins/trx_addons/_trx_addons-responsive.scss";
-@import "../plugins/elementor/_elementor-responsive.scss";
-@import "../plugins/timeline-widget-addon-for-elementor/_timeline-widget-addon-for-elementor-style-responsive.scss";
 @import "../plugins/woocommerce/_woocommerce-responsive.scss";
 
 
@@ -50,8 +48,6 @@
 	@include theme--sm();
 	@include front_page--sm();
 	@include trx_addons--sm();
-	@include elementor--sm();
-	@include timeline--sm();
 	@include woocommerce--sm();
 }
 

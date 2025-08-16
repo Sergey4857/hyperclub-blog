@@ -92,6 +92,8 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 	define( 'WP_DEBUG', false );
 }
 
+
+
 define( 'FS_METHOD', 'direct' );
 define( 'COOKIEHASH', '9e2b49509e67d2ad97fde7ab181cd0ae' );
 define( 'WP_AUTO_UPDATE_CORE', 'minor' );
