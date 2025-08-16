@@ -20,10 +20,9 @@ function hyperclub_blog_setup()
 	register_nav_menus(
 		array(
 
-			'menu-2' => esc_html__('header-nav-2', 'hyperclub-blog'),
-			'footer-1' => esc_html__('footer-nav-1', 'hyperclub-blog'),
-			'footer-2' => esc_html__('footer-nav-2', 'hyperclub-blog'),
-			'footer-3' => esc_html__('footer-nav-3', 'hyperclub-blog'),
+			'header-nav' => esc_html__('header-nav', 'hyperclub-blog'),
+			'footer-1' => esc_html__('footer-nav', 'hyperclub-blog'),
+			
 			'language-switcher' => esc_html__('language-switcher', 'hyperclub-blog'),
 		)
 	);

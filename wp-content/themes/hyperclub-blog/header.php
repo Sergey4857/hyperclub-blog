@@ -20,27 +20,21 @@
 
 
       <nav class="header-nav">
-        <a class="header-nav-link" href="/">
-          Buy TikTok <span class="header-likes">Likes</span>
-        </a>
-        <span class="decorator"></span>
-        <a class="header-nav-link" href="/buy-tiktok-followers">
-          Buy TikTok <span class="header-followers">Followers</span>
-        </a>
-        <span class="decorator"></span>
-
-        <a class="header-nav-link" href="/buy-tiktok-views">
-          Buy TikTok <span class="header-views">Views</span>
-        </a>
-        <span class="decorator"></span>
-        <a class="header-nav-link" href="/about">
-          About Us
-        </a>
-        <span class="decorator"></span>
-        <a class="header-nav-link" href="/contact-us">
-          Contact Us
-        </a>
+        <?php
+        wp_nav_menu(array(
+          'theme_location' => 'header-nav',
+       
+        ));
+        ?>
       </nav>
+      <div class="language-switcher">
+        <?php
+        wp_nav_menu(array(
+          'theme_location' => 'language-switcher',
+        ));
+        ?>
+      </div>
+
 
       <a href="/login" class="login-button">
         Login
