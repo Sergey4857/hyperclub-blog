@@ -47,66 +47,22 @@
 
       <div class="burger-backdrop">
         <div class="burger-nav-wrap">
-          <div class="burger-nav">
-            <div class="burger-wrapper">
-              <div class="burger-title">
-                Services
-              </div>
-              <div class="burger-block">
-                <a href="/" class="burger-link">
-                  Buy TikTok <span class="highlight-likes">Likes</span>
-                </a>
-                <a href="/buy-tiktok-followers" class="burger-link">
-                  Buy TikTok <span class="highlight-followers">Followers</span>
-                </a>
-                <a href="/buy-tiktok-views" class="burger-link">
-                  Buy TikTok <span class="highlight-views">Views</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="burger-wrapper">
-              <div class="burger-title">
-                Free Tools
-              </div>
-              <div class="burger-block">
-                <a href="#" class="burger-link soon">
-                  Free TikTok Video Downloader
-                </a>
-                <a href="#" class="burger-link soon">
-                  Free TikTok Likes
-                </a>
-                <a href="#" class="burger-link soon">
-                  Free TikTok Views
-                </a>
-                <a href="#" class="burger-link soon">
-                  Free TikTok Followers
-                </a>
-              </div>
-            </div>
-            <div class="burger-wrapper">
-              <div class="burger-title">
-                About
-              </div>
-
-              <div class="burger-block">
-
-
-                <a href="/blog" class="burger-link">
-                  Blog
-                </a>
-                <a href="/privacy-policy" class="burger-link">
-                  Privacy Policy
-                </a>
-                <a href="/terms-of-use" class="burger-link">
-                  Terms of Use
-                </a>
-                <a href="#" class="burger-link">
-                  Live Support
-                </a>
-              </div>
-            </div>
+          <div class="burger-nav-close">
+            <img src="<?php echo get_template_directory_uri() . "/src/icons/close.svg" ?>" alt="close" />
           </div>
+          <div class="burger-nav">
+ <?php
+        wp_nav_menu(array(
+          'theme_location' => 'header-nav',
+       
+        ));
+        ?>
+          </div>
+
+           <a href="/login" class="login-button-mobile">
+        Login
+      </a>
+
         </div>
       </div>
     </div>

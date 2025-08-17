@@ -18,8 +18,10 @@
       
  
     <div class="footer-logo">
-      <img class="logo-image" alt="logo" src="<?php echo get_template_directory_uri() . '/src/icons/logo.svg'; ?>" />
-      Hyper Club
+      <a href="/">
+        <img class="logo-image" alt="logo" src="<?php echo get_template_directory_uri() . '/src/icons/logo.svg'; ?>" />
+        Hyper Club
+      </a>
     </div>
 
         <div class="footer-privacy-block">
@@ -44,12 +46,21 @@
     <ul class="footer-social-list">
       <li class="footer-social-item">
         <a class="footer-social-link" href="/">
-          <img class="footer-social-icon" alt="logo" src="<?php echo get_template_directory_uri() . '/src/icons/facebook.svg'; ?>" />
+          <img class="footer-social-icon" alt="telegram" src="<?php echo get_template_directory_uri() . '/src/icons/telegram.svg'; ?>" />
         </a>
       </li>
-      <li class="footer-social-item"></li>
-      <li class="footer-social-item"></li>
-      <li class="footer-social-item"></li>
+      <li class="footer-social-item">  <a class="footer-social-link" href="/">
+          <img class="footer-social-icon" alt="discord" src="<?php echo get_template_directory_uri() . '/src/icons/discord.svg'; ?>" />
+        </a></li>
+      <li class="footer-social-item">  <a class="footer-social-link" href="/">
+          <img class="footer-social-icon" alt="twitter" src="<?php echo get_template_directory_uri() . '/src/icons/twitter.svg'; ?>" />
+        </a></li>
+      <li class="footer-social-item">  <a class="footer-social-link" href="/">
+          <img class="footer-social-icon" alt="instagram" src="<?php echo get_template_directory_uri() . '/src/icons/instagram.svg'; ?>" />
+        </a></li>
+           <li class="footer-social-item">  <a class="footer-social-link" href="/">
+          <img class="footer-social-icon" alt="youtube" src="<?php echo get_template_directory_uri() . '/src/icons/youtube.svg'; ?>" />
+        </a></li>
     </ul>
 
     

@@ -1,29 +1,37 @@
 //burger menu
 jQuery(document).ready(function ($) {
   $(".burger-button").on("click", function (event) {
-    event.stopPropagation(); 
+    event.stopPropagation();
     $(this).toggleClass("active");
     $(".burger-nav-wrap").toggleClass("active");
     $(".burger-backdrop").toggleClass("active");
   });
 
+  $(".burger-nav-close").on("click", function (event) {
+    event.stopPropagation();
+    $(".burger-button, .burger-nav-wrap, .burger-backdrop").removeClass(
+      "active"
+    );
+  });
+
   $(document).on("click", function (event) {
     if (!$(event.target).closest(".burger-nav-wrap, .burger-button").length) {
-      $(".burger-button, .burger-nav-wrap, .burger-backdrop").removeClass("active");
+      $(".burger-button, .burger-nav-wrap, .burger-backdrop").removeClass(
+        "active"
+      );
     }
   });
 
-  $('.burger-title').on('click', function () {
-    $('.burger-block').not($(this).next('.burger-block')).slideUp(300);
-    $('.burger-title').not(this).removeClass('active');
+  $(".burger-title").on("click", function () {
+    $(".burger-block").not($(this).next(".burger-block")).slideUp(300);
+    $(".burger-title").not(this).removeClass("active");
 
-    $(this).next('.burger-block').slideToggle(300);
-    $(this).toggleClass('active');
+    $(this).next(".burger-block").slideToggle(300);
+    $(this).toggleClass("active");
   });
 
-  $('.burger-block').slideUp(0);
+  $(".burger-block").slideUp(0);
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   //custom blog dropdown

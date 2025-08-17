@@ -34,11 +34,18 @@
         height: fit-content;
         align-items: center;
         gap: 7px;
+        @media screen and (max-width: 768px) {
+          font-size: 13px;
+        }
 
         .logo-image {
           display: block;
           width: 40px;
           height: 40px;
+          @media screen and (max-width: 768px) {
+            width: 23px;
+            height: 23px;
+          }
         }
       }
     }
@@ -65,6 +72,10 @@
             @media screen and (max-width: 1280px) {
               font-size: 14px;
             }
+            transition: color 0.2s ease;
+            &:hover {
+              color: #fff;
+            }
           }
         }
       }
@@ -79,8 +90,12 @@
       border: 1px solid #2fac8c;
       background: linear-gradient(90deg, #2fac8c 0%, #1f1c1c 100%);
       padding: 10px 32px;
+      transition: opacity 0.2s ease;
       @media screen and (max-width: 768px) {
         display: none;
+      }
+      &:hover {
+        opacity: 0.8;
       }
     }
 
@@ -92,6 +107,11 @@
       display: block;
       width: 33px;
       height: 33px;
+      cursor: pointer;
+      @media screen and (max-width: 768px) {
+        width: 23px;
+        height: 23px;
+      }
 
       &::after {
         position: absolute;
@@ -122,6 +142,9 @@
       padding-left: 40px;
       padding-right: 10px;
       position: relative;
+      @media screen and (max-width: 768px) {
+        margin-right: 10px;
+      }
       &:before {
         content: "";
         position: absolute;
@@ -266,8 +289,6 @@
               }
 
               .sub-menu {
-                min-width: 100px;
-
                 .wpml-ls-item {
                   a {
                     padding: 8px 10px;
@@ -285,11 +306,13 @@
       display: flex;
       position: fixed;
       left: 0;
-      top: 60px;
+      top: 0px;
       width: 100%;
-      background-color: #fff;
+      background-color: #0e0d0d;
       height: 100%;
       opacity: 0;
+      z-index: 1000;
+
       transition: opacity 0.3s ease-in-out;
       pointer-events: none;
 
@@ -302,23 +325,86 @@
         display: flex;
         position: fixed;
         left: 0;
-        width: 95%;
+        width: 100%;
         overflow: hidden;
         z-index: 1000;
-        border-radius: 0px 12px 0px 0px;
-        background: #162680;
+        background: #0e0d0d;
         height: 100%;
-        border-top: 1px solid #ccd0d6;
-        border-right: 1px solid #ccd0d6;
-        border-bottom: 1px solid #ccd0d6;
-        box-shadow: 0px 0px 15px -7px rgba(0, 0, 0, 0.5);
         transition: right 0.3s ease-in-out;
+
+        .login-button-mobile {
+          position: absolute;
+          bottom: 20px;
+          right: 20px;
+
+          color: #fff;
+          font-family: "Montserrat-700";
+          font-size: 18px;
+          text-decoration: none;
+          border-radius: 8px;
+          border: 1px solid #2fac8c;
+          background: linear-gradient(90deg, #2fac8c 0%, #1f1c1c 100%);
+          padding: 1px 40px;
+        }
+
+        .burger-nav-close {
+          position: absolute;
+          right: 21px;
+          top: 24px;
+          width: 18px;
+          height: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+        }
 
         .burger-nav {
           display: flex;
           flex-direction: column;
           width: 100%;
           padding: 25px 20px;
+
+          ul {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            li {
+              position: relative;
+              &:after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 0.5px;
+                background-color: #373737;
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+              }
+              a {
+                color: #b8b8b8;
+                font-family: "Montserrat-300";
+                font-size: 16px;
+                transition: color 0.2s ease;
+                padding: 13px 0;
+                display: block;
+                &:hover {
+                  color: #fff;
+                }
+              }
+              &.active {
+                a {
+                  color: #2fac8c;
+                }
+              }
+            }
+          }
 
           .burger-wrapper {
             position: relative;
@@ -329,91 +415,6 @@
               width: 100%;
               height: 1px;
               background-color: #fff;
-            }
-
-            .burger-title {
-              color: #fff;
-              font-family: "TWK600";
-              font-size: 30px;
-              position: relative;
-              padding: 15px;
-
-              &::after {
-                content: "";
-                display: block;
-                height: 20px;
-                width: 18px;
-                position: absolute;
-                right: 6px;
-                top: 50%;
-                transform: translateY(-50%);
-                background-image: url("../icons/arrow-btm.svg");
-                background-position: center;
-                background-repeat: no-repeat;
-                transition: transform 300ms ease-in-out;
-              }
-
-              &.active {
-                display: block;
-                padding: 15px 15px 10px;
-
-                &::after {
-                  content: "";
-                  position: absolute;
-                  right: 6px;
-                  top: 50%;
-                  transform: translateY(-50%) rotate(180deg);
-                }
-              }
-            }
-
-            .burger-block {
-              display: flex;
-              flex-direction: column;
-              gap: 10px;
-              padding: 0px 20px 15px 20px;
-
-              .burger-link {
-                color: #fff;
-                font-family: "TWK600";
-                font-size: 18px;
-
-                .highlight-likes {
-                  color: #f948b4;
-                }
-
-                .highlight-followers {
-                  color: #fc5d1f;
-                }
-
-                .highlight-views {
-                  color: #00c82f;
-                }
-
-                &.soon {
-                  display: block;
-                  width: fit-content;
-                  height: 100%;
-                  position: relative;
-                  color: #8a92c0;
-
-                  &::after {
-                    content: "soon";
-                    position: absolute;
-                    right: -33px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    border-radius: 58px;
-                    background: #f948b4;
-                    display: flex;
-                    padding: 2px 3px 2px 3px;
-                    color: #fff;
-                    text-align: center;
-                    font-family: "TWK600";
-                    font-size: 10px;
-                  }
-                }
-              }
             }
           }
         }
