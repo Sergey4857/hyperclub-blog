@@ -81,20 +81,11 @@ $posttags = get_the_tags();
 					?>
 				</span>
 			</div>
-			<div class="meta-item">
-				<span class="meta-icon likes-icon"></span>
-				<span class="meta-text">
-					<?php
-					$likes = get_post_meta(get_the_ID(), 'post_likes', true);
-					if (!$likes) {
-						$likes = 0;
-					}
-					?>
-					<button class="like-button" data-post-id="<?php echo get_the_ID(); ?>">
-						<span class="like-count"><?php echo $likes; ?></span> likes
-					</button>
-				</span>
-			</div>
+			
+			<button class="toc-toggle-btn" aria-label="Open Table of Contents">
+				<span class="toc-icon"></span>
+				<span class="toc-text">TOC</span>
+			</button>
 		</div>
 
 		<!-- Main content and sidebar -->
@@ -148,28 +139,12 @@ $posttags = get_the_tags();
 			<div class="post-sidebar">
 				<!-- Table of Contents -->
 				<div class="sidebar-widget table-of-contents">
+					<button class="toc-close-btn" aria-label="Close Table of Contents">
+						<span class="close-icon"></span>
+					</button>
 					<h3>Table of Contents</h3>
 					<div class="toc-content">
-						<?php
-						// Automatic table of contents generation based on headings
-						$content = get_the_content();
-						$headings = array();
-						
-						// Find all H2 and H3 headings
-						preg_match_all('/<h[23][^>]*>(.*?)<\/h[23]>/i', $content, $matches);
-						
-						if (!empty($matches[0])) {
-							echo '<ul class="toc-list">';
-							foreach ($matches[1] as $index => $heading) {
-								$level = substr($matches[0][$index], 1, 1);
-								$indent = ($level == '3') ? 'toc-sub' : '';
-								echo '<li class="toc-item ' . $indent . '"><a href="#heading-' . $index . '">' . strip_tags($heading) . '</a></li>';
-							}
-							echo '</ul>';
-						} else {
-							echo '<p>Content will be added automatically</p>';
-						}
-						?>
+						<p>Content will be added automatically</p>
 					</div>
 				</div>
 
