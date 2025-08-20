@@ -5,62 +5,47 @@ $pagination = isset($args['pagination']) ? $args['pagination'] : "";
 ?>
 
 <?php if ($query->have_posts()): ?>
-  <ul class="blog-posts">
+  <div class="blog-posts-grid">
     <?php while ($query->have_posts()):
       $query->the_post(); ?>
-      <li class="post-item">
-        <a class="post-link" href="<?php the_permalink(); ?>">
-          <?php
-          $image_url = has_post_thumbnail()
-            ? esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium'))
-            : esc_url(get_template_directory_uri() . '/src/images/post1.png');
-          ?>
-
-          <div class="post-img" style="background-image: url('<?php echo $image_url; ?>');"
-            aria-label="<?php the_title_attribute(); ?>"></div>
-        </a>
-        <div class="post-block">
-          <a href="<?php the_permalink(); ?>">
-            <h2>
-              <?php the_title(); ?>
-            </h2>
-          </a>
-          <div class="post-text"><?php the_excerpt(); ?></div>
-          <div class="info-block">
-            <div class="info-category">
-              <?php the_category(', '); ?>
-            </div>
-            <div class="info-time">
-              <?php the_time('d/m/Y'); ?>
-            </div>
-
-            <div class="reading-time">
-              <?php
-              $content = get_the_content();
-              $content = strip_tags($content);
-              $word_count = str_word_count($content);
-              $reading_speed = 220;
-              $reading_time = ceil($word_count / $reading_speed);
-              echo sprintf(__('%d min read', 'hyperclub-blog'), $reading_time);
-              ?>
-            </div>
-
-          </div>
-          <div class="author-block">
-            <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" class="author-link">
-              <div class="author"><?php the_author(); ?>
-              </div>
-              <?php if (function_exists('get_field')): ?>
-                <div class="author-position">
-                  <?php echo esc_html(get_field('author_position', 'user_' . get_the_author_meta('ID'))); ?>
-                </div>
-              <?php endif; ?>
-            </a>
-          </div>
+      <article class="post-grid-item">
+        <a href="<?php the_permalink(); ?>">
+        <div class="post-image">
+          
+            <?php
+            $image_url = has_post_thumbnail()
+              ? esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium'))
+              : esc_url(get_template_directory_uri() . '/src/images/post1.png');
+            ?>
+            <img src="<?php echo $image_url; ?>" alt="<?php the_title_attribute(); ?>">
+         
         </div>
-      </li>
+        
+        <div class="post-content">
+         
+          
+          <h2 class="post-title">
+            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+          </h2>
+          
+          <div class="post-excerpt">
+            <?php
+            $excerpt = get_the_excerpt();
+            if (empty($excerpt)) {
+              $excerpt = get_the_content();
+            }
+            $excerpt = strip_tags($excerpt);
+            $excerpt = wp_trim_words($excerpt, 25, '...');
+            echo $excerpt;
+            ?>
+          </div>
+          
+    
+        </div>
+         </a>
+      </article>
     <?php endwhile; ?>
-  </ul>
+  </div>
 
   <?php
   if (!isset($pagination) || $pagination != false):
@@ -74,7 +59,6 @@ $pagination = isset($args['pagination']) ? $args['pagination'] : "";
     } else {
       echo '<span class="prev disabled"><span class="arrow"></span></span>';
     }
-
 
     echo paginate_links([
       'total' => $total_pages,

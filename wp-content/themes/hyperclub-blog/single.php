@@ -15,144 +15,226 @@ $posttags = get_the_tags();
 ?>
 <main class="blog-content">
 	<section class="single-header-container single-post">
-		<div class="left_bar">
-			<div class="breadcrumbs-wrap">
-				<nav aria-label="breadcrumb">
-					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="/blog/">Blog</a></li>
-						<li class="breadcrumb-item">
-							<a href="<?php echo $category_link; ?>">
-								<?php echo esc_html($category->name); ?>
-							</a>
-						</li>
-					</ul>
-				</nav>
+		<!-- Breadcrumbs -->
+		<div class="breadcrumbs-container">
+			<nav aria-label="breadcrumb">
+				<ul class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/blog/">Blog</a></li>
+					<li class="breadcrumb-item">
+						<a href="<?php echo $category_link; ?>">
+							<?php echo esc_html($category->name); ?>
+						</a>
+					</li>
+					<li class="breadcrumb-item active"><?php the_title(); ?></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="post-title-container">
+			<h1><?php the_title(); ?></h1>
+		</div>
+
+		<div class="post-banner-container">
+			<?php
+			$image_url = has_post_thumbnail()
+				? esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large'))
+				: esc_url(get_template_directory_uri() . '/src/images/post1.png');
+			?>
+			<div class="post-main-image" style="background-image: url('<?php echo $image_url; ?>');"
+				aria-label="<?php the_title_attribute(); ?>">
 			</div>
 		</div>
 
-		<div class="post_head">
-			<div class="right_bar">
-				<div class="read-block">
 
-					<div class="read-time">
+		<div class="post-meta-container">
+			<div class="meta-item">
+				<span class="meta-icon author-icon"></span>
+				<span class="meta-text"><?php the_author(); ?></span>
+			</div>
+			<div class="meta-item">
+				<span class="meta-icon calendar-icon"></span>
+				<span class="meta-text"><?php the_time('d/m/Y'); ?></span>
+			</div>
+			<div class="meta-item">
+				<span class="meta-icon read-icon"></span>
+				<span class="meta-text">
+					<?php
+					$content = get_the_content();
+					$content = strip_tags($content);
+					$word_count = str_word_count($content);
+					$reading_speed = 220;
+					$reading_time = ceil($word_count / $reading_speed);
+					echo sprintf(__('%d min read', 'hyperclub-blog'), $reading_time);
+					?>
+				</span>
+			</div>
+			<div class="meta-item">
+				<span class="meta-icon views-icon"></span>
+				<span class="meta-text">
+					<?php
+					// Simple views implementation
+					$views = get_post_meta(get_the_ID(), 'post_views', true);
+					if (!$views) {
+						$views = 0;
+					}
+					echo $views . ' views';
+					?>
+				</span>
+			</div>
+			<div class="meta-item">
+				<span class="meta-icon likes-icon"></span>
+				<span class="meta-text">
+					<?php
+					$likes = get_post_meta(get_the_ID(), 'post_likes', true);
+					if (!$likes) {
+						$likes = 0;
+					}
+					?>
+					<button class="like-button" data-post-id="<?php echo get_the_ID(); ?>">
+						<span class="like-count"><?php echo $likes; ?></span> likes
+					</button>
+				</span>
+			</div>
+		</div>
+
+		<!-- Main content and sidebar -->
+		<div class="post-content-sidebar">
+			<!-- Main content -->
+			<div class="post-content-main">
+				<?php if (have_posts()):
+					while (have_posts()):
+						the_post(); ?>
+						
+						<!-- Article description -->
+						<div class="post-description">
+							<?php the_excerpt(); ?>
+						</div>
+
+						<!-- Article content -->
+						<div class="post-content-wrap">
+							<?php the_content(); ?>
+						</div>
+
+						<!-- Tags -->
+						<div class="post-tags">
+							<h4>Tags</h4>
+							<div class="tags"><?php the_tags('', ' ', ''); ?></div>
+						</div>
+
+						<!-- Share -->
+						<div class="share">
+							<h4>Share this article:</h4>
+							<div class="share-links">
+								<a href="https://t.me/share/url?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+									target="_blank" rel="noopener noreferrer">
+									<img src="<?php echo get_template_directory_uri(); ?>/src/icons/telegram.svg" alt="Share on Telegram">
+								</a>
+								<a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+									target="_blank" rel="noopener noreferrer">
+									<img src="<?php echo get_template_directory_uri(); ?>/src/icons/twitter.svg" alt="Share on Twitter">
+								</a>
+								<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>"
+									target="_blank" rel="noopener noreferrer">
+									<img src="<?php echo get_template_directory_uri(); ?>/src/icons/facebook-white.svg" alt="Share on Facebook">
+								</a>
+							</div>
+						</div>
+
+					
+					<?php endwhile; endif; ?>
+			</div>
+
+			<!-- Sidebar -->
+			<div class="post-sidebar">
+				<!-- Table of Contents -->
+				<div class="sidebar-widget table-of-contents">
+					<h3>Table of Contents</h3>
+					<div class="toc-content">
 						<?php
+						// Automatic table of contents generation based on headings
 						$content = get_the_content();
-						$content = strip_tags($content);
-						$word_count = str_word_count($content);
-						$reading_speed = 220;
-						$reading_time = ceil($word_count / $reading_speed);
-
-						echo sprintf(__('%d min read', 'hyperclub-blog'), $reading_time);
+						$headings = array();
+						
+						// Find all H2 and H3 headings
+						preg_match_all('/<h[23][^>]*>(.*?)<\/h[23]>/i', $content, $matches);
+						
+						if (!empty($matches[0])) {
+							echo '<ul class="toc-list">';
+							foreach ($matches[1] as $index => $heading) {
+								$level = substr($matches[0][$index], 1, 1);
+								$indent = ($level == '3') ? 'toc-sub' : '';
+								echo '<li class="toc-item ' . $indent . '"><a href="#heading-' . $index . '">' . strip_tags($heading) . '</a></li>';
+							}
+							echo '</ul>';
+						} else {
+							echo '<p>Content will be added automatically</p>';
+						}
 						?>
 					</div>
 				</div>
 
-
-				<h1><?php the_title(); ?></h1>
-
-
-				<div class="post-wrap">
-					<div class="post-category"><?php the_category(', '); ?></div>
-					<div class="post-data"><?php the_time('d/m/Y'); ?></div>
+				<!-- Share -->
+				<div class="sidebar-widget share-widget">
+					<h3>Share</h3>
+					<div class="share-buttons">
+						<a href="https://t.me/share/url?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+							target="_blank" rel="noopener noreferrer" class="share-btn linkedin">
+							<img src="<?php echo get_template_directory_uri(); ?>/src/icons/telegram.svg" alt="LinkedIn">
+						</a>
+						<a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+							target="_blank" rel="noopener noreferrer" class="share-btn twitter">
+							<img src="<?php echo get_template_directory_uri(); ?>/src/icons/twitter.svg" alt="Twitter">
+						</a>
+						<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>"
+							target="_blank" rel="noopener noreferrer" class="share-btn facebook">
+							<img src="<?php echo get_template_directory_uri(); ?>/src/icons/facebook-white.svg" alt="Facebook">
+						</a>
+					</div>
 				</div>
 
-				<?php
-				$image_url = has_post_thumbnail()
-					? esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large'))
-					: esc_url(get_template_directory_uri() . '/src/images/post1.png');
-				?>
+				<!-- Related materials -->
+				<div class="sidebar-widget related-materials">
+					<h3>Related Materials</h3>
+					<?php
+					$related_query = new WP_Query([
+						'post_type' => 'post',
+						'posts_per_page' => 3,
+						'post__not_in' => [get_the_ID()],
+						'category__in' => [$category->term_id],
+						'orderby' => 'date',
+						'order' => 'DESC'
+					]);
 
-				<div class="post-main-image" style="background-image: url('<?php echo $image_url; ?>');"
-					aria-label="<?php the_title_attribute(); ?>');">
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="post-content">
-
-
-			<?php if (have_posts()):
-				while (have_posts()):
-					the_post(); ?>
-
-
-					<div class="post-content-wrap">
-						<?php the_content(); ?>
-					</div>
-
-					<span class="decor-line"></span>
-					<div class="post-tags">
-						<h4>Tags</h4>
-						<div class="tags"><?php the_tags('', ' ', ''); ?></div>
-					</div>
-					<span class="decor-line"></span>
-					<div class="share">
-						<h4>Share this article:</h4>
-						<div class="share-links">
-
-							<a href="https://www.linkedin.com/shareArticle?url=<?php echo urlencode(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>"
-								target="_blank" rel="noopener noreferrer">
-								<img src="<?php echo get_template_directory_uri(); ?>/src/images/linkedin.svg" alt="Share on LinkedIn">
-							</a>
-
-							<a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
-								target="_blank" rel="noopener noreferrer">
-								<img src="<?php echo get_template_directory_uri(); ?>/src/images/twitter.svg" alt="Share on Twitter">
-							</a>
-
-							<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>"
-								target="_blank" rel="noopener noreferrer">
-								<img src="<?php echo get_template_directory_uri(); ?>/src/images/facebook.svg" alt="Share on Facebook">
-							</a>
-						</div>
-					</div>
-
-					<div class="author-wrap">
-						<?php
-						$author_id = get_the_author_meta('ID');
-						$author_image = get_field('author_image', 'user_' . $author_id);
-						$author_description = get_field('author_description', 'user_' . $author_id);
-						?>
-
-						<?php if ($author_image): ?>
-							<img class="author_image" src="<?php echo esc_url($author_image); ?>"
-								alt="<?php echo esc_attr(get_the_author()); ?>">
-						<?php endif; ?>
-
-						<div class="author-subtitle">Article by</div>
-						<div class="author-title">
-							<a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" rel="author">
-								<?php echo esc_html(get_the_author()); ?>
-							</a>
-						</div>
-
-						<?php if ($author_description): ?>
-							<div class="author-desc">
-								<?php echo $author_description; ?>
-							</div>
-						<?php endif; ?>
-
-						<?php if (have_rows('author_social_networks', 'user_' . $author_id)): ?>
-							<div class="author-social">
-								<?php while (have_rows('author_social_networks', 'user_' . $author_id)):
-									the_row();
-									$social_link = get_sub_field('author_social_link');
-									$social_icon = get_sub_field('author_social_icon');
-									if ($social_link && $social_icon): ?>
-										<a href="<?php echo esc_url($social_link); ?>" target="_blank" rel="noopener noreferrer">
-											<img src="<?php echo esc_url($social_icon); ?>" alt="Social Icon">
-										</a>
+					if ($related_query->have_posts()): ?>
+						<div class="related-posts">
+							<?php while ($related_query->have_posts()): $related_query->the_post(); ?>
+								<div class="related-post-item">
+									<?php if (has_post_thumbnail()): ?>
+										<div class="related-post-image">
+											<a href="<?php the_permalink(); ?>">
+												<?php the_post_thumbnail('thumbnail'); ?>
+											</a>
+										</div>
 									<?php endif; ?>
-								<?php endwhile; ?>
-							</div>
-						<?php endif; ?>
-					</div>
-				<?php endwhile; endif; ?>
-
+									<div class="related-post-content">
+										<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+										<div class="related-post-date"><?php the_time('d/m/Y'); ?></div>
+									</div>
+								</div>
+							<?php endwhile; ?>
+						</div>
+					<?php endif;
+					wp_reset_postdata(); ?>
+				</div>
+			</div>
 		</div>
 	</section>
+
+
+
+	<?php echo get_template_part('template-parts/connect-section'); ?>
+
+	<!-- Похожие статьи -->
 	<?php
 	$posttags = get_the_tags();
 
@@ -170,7 +252,6 @@ $posttags = get_the_tags();
 			'no_found_rows' => true,
 		]);
 
-
 		if ($related_query->have_posts()) { ?>
 			<section class="related-articles">
 				<h2 class="related-title">Related Articles</h2>
@@ -180,8 +261,8 @@ $posttags = get_the_tags();
 		wp_reset_postdata();
 	}
 	?>
-
-
 </main>
+
 <?php
 get_footer();
+?>

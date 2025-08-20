@@ -94,6 +94,58 @@ function fix_svg()
 }
 add_action('admin_head', 'fix_svg');
 
+// Function for counting post views
+function set_post_views($post_id) {
+    $count_key = 'post_views';
+    $count = get_post_meta($post_id, $count_key, true);
+    if ($count == '') {
+        $count = 0;
+        delete_post_meta($post_id, $count_key);
+        add_post_meta($post_id, $count_key, '0');
+    } else {
+        $count++;
+        update_post_meta($post_id, $count_key, $count);
+    }
+}
+
+// Count views when loading a post
+function track_post_views($post_id) {
+    if (!is_single()) return;
+    if (empty($post_id)) {
+        global $post;
+        $post_id = $post->ID;
+    }
+    set_post_views($post_id);
+}
+add_action('wp_head', 'track_post_views');
+
+// Function for counting post likes
+function set_post_likes($post_id) {
+    $count_key = 'post_likes';
+    $count = get_post_meta($post_id, $count_key, true);
+    if ($count == '') {
+        $count = 0;
+        delete_post_meta($post_id, $count_key);
+        add_post_meta($post_id, $count_key, '0');
+    } else {
+        $count++;
+        update_post_meta($post_id, $count_key, $count);
+    }
+}
+
+// AJAX handler for likes
+function handle_post_like() {
+    if (isset($_POST['post_id'])) {
+        $post_id = intval($_POST['post_id']);
+        set_post_likes($post_id);
+        $likes = get_post_meta($post_id, 'post_likes', true);
+        wp_send_json_success(['likes' => $likes]);
+    }
+    wp_send_json_error();
+}
+add_action('wp_ajax_post_like', 'handle_post_like');
+add_action('wp_ajax_nopriv_post_like', 'handle_post_like');
+
 
 
 
