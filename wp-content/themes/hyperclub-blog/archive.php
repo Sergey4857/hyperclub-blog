@@ -13,6 +13,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 $archive_title = '';
 $archive_description = '';
+$archive_type = '';
 $query_args = [
 	'post_type' => 'post',
 	'posts_per_page' => 10,
@@ -24,12 +25,14 @@ if (is_category()) {
 	$category = get_queried_object();
 	if ($category && !is_wp_error($category)) {
 		$archive_title = 'Articles in category "' . esc_html($category->name) . '"';
+		$archive_type = 'category-page';
 		$query_args['category_name'] = $category->slug;
 	}
 } elseif (is_tag()) {
 	$tag = get_queried_object();
 	if ($tag && !is_wp_error($tag)) {
 		$archive_title = 'Articles tagged "' . esc_html($tag->name) . '"';
+		$archive_type = 'tag-page';
 		$query_args['tag'] = $tag->slug;
 	}
 } else {
@@ -51,7 +54,7 @@ if ($query->have_posts()) {
 }
 ?>
 <main class="blog-content">
-	<section class="blog-search-container">
+	<section class="blog-search-container <?php echo esc_attr($archive_type); ?>">
 		<div class="blog-header">
 			<h1>Blog</h1>
 			<?php get_template_part('template-parts/blog-filter'); ?>
@@ -69,7 +72,19 @@ if ($query->have_posts()) {
 				<?php endif; ?>
 			</p>
 
-			<?php get_template_part('template-parts/blog-posts', null, ['query' => $query, 'pagination' => true], ); ?>
+			<?php if ($query->have_posts()): ?>
+				<?php get_template_part('template-parts/blog-posts', null, ['query' => $query, 'pagination' => true], ); ?>
+			<?php else: ?>
+				<div class="no-posts">
+					<div class="no-posts-icon"></div>
+					<h3>No articles found</h3>
+					<p>Sorry, no articles were found in this <?php echo is_category() ? 'category' : 'tag'; ?>.</p>
+					<a href="/blog/" class="back-to-blog">
+						<span class="arrow-icon"></span>
+						Back to Blog
+					</a>
+				</div>
+			<?php endif; ?>
 
 			<?php wp_reset_postdata(); ?>
 

@@ -34,7 +34,6 @@ jQuery(document).ready(function ($) {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  //custom blog dropdown
   const dropdownButton = document.querySelector(".dropdown-button");
   const dropdownMenu = document.querySelector(".dropdown-menu");
   const hiddenCategoryInput = document.getElementById("hiddenCategoryInput");
@@ -157,14 +156,11 @@ function initTableOfContents() {
 
   if (!tocContainer || !tocWidget) return;
 
-  // Clear existing content
   tocContainer.innerHTML = "";
 
-  // Create TOC list
   const tocList = document.createElement("ul");
   tocList.className = "toc-list";
 
-  // Add IDs to headings and create TOC items
   headings.forEach((heading, index) => {
     if (!heading.id) {
       heading.id = `heading-${index}`;
@@ -186,40 +182,32 @@ function initTableOfContents() {
 
   tocContainer.appendChild(tocList);
 
-  // Get all TOC links after creation
   const tocLinks = tocContainer.querySelectorAll(".toc-item a");
 
-  // Function to update active TOC item
   function updateActiveTOCItem() {
-    const scrollPosition = window.scrollY + 100; // Offset for sticky header
+    const scrollPosition = window.scrollY + 100;
 
     let activeHeading = null;
 
-    // Find the current active heading based on scroll position
     for (let i = 0; i < headings.length; i++) {
       const heading = headings[i];
       const headingTop = heading.offsetTop;
       const headingBottom = headingTop + heading.offsetHeight;
 
-      // Check if we're currently viewing this heading
       if (scrollPosition >= headingTop && scrollPosition < headingBottom) {
         activeHeading = heading;
         break;
       }
 
-      // If we've scrolled past this heading but haven't reached the next one,
-      // keep the previous heading active
       if (scrollPosition >= headingTop) {
         activeHeading = heading;
       }
     }
 
-    // Remove active class from all TOC links
     tocLinks.forEach((link) => {
       link.classList.remove("active");
     });
 
-    // Add active class to current active TOC link
     if (activeHeading) {
       const activeLink = document.querySelector(
         `.table-of-contents .toc-item a[href="#${activeHeading.id}"]`
@@ -230,7 +218,6 @@ function initTableOfContents() {
     }
   }
 
-  // Smooth scroll to heading when TOC link is clicked
   tocLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -238,27 +225,23 @@ function initTableOfContents() {
       const targetHeading = document.getElementById(targetId);
 
       if (targetHeading) {
-        const offsetTop = targetHeading.offsetTop - 100; // Account for sticky header
+        const offsetTop = targetHeading.offsetTop - 100;
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
         });
 
-        // Close mobile TOC after clicking on a link
         closeMobileTOC();
       }
     });
   });
 
-  // Update active TOC item on scroll
   window.addEventListener("scroll", updateActiveTOCItem);
 
-  // Initial call to set active item
   updateActiveTOCItem();
 }
 
-// Mobile TOC functionality
-let closeMobileTOC; // Declare function in global scope
+let closeMobileTOC;
 
 function initMobileTOC() {
   const tocToggleBtn = document.querySelector(".toc-toggle-btn");
@@ -267,7 +250,6 @@ function initMobileTOC() {
 
   if (!tocToggleBtn || !postSidebar) return;
 
-  // Toggle TOC open/close
   function toggleMobileTOC() {
     const isOpen = postSidebar.classList.contains("toc-open");
 
@@ -278,35 +260,30 @@ function initMobileTOC() {
     }
   }
 
-  // Open mobile TOC
   function openMobileTOC() {
     postSidebar.classList.add("toc-open");
     tocToggleBtn.classList.add("active");
-    document.body.style.overflow = "hidden"; // Prevent background scroll
+    document.body.style.overflow = "hidden";
   }
 
-  // Close mobile TOC
   closeMobileTOC = function () {
     postSidebar.classList.remove("toc-open");
     tocToggleBtn.classList.remove("active");
-    document.body.style.overflow = ""; // Restore background scroll
+    document.body.style.overflow = "";
   };
 
-  // Event listeners
   tocToggleBtn.addEventListener("click", toggleMobileTOC);
 
   if (tocCloseBtn) {
     tocCloseBtn.addEventListener("click", closeMobileTOC);
   }
 
-  // Close TOC when clicking outside
   postSidebar.addEventListener("click", (e) => {
     if (e.target === postSidebar) {
       closeMobileTOC();
     }
   });
 
-  // Close TOC on escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeMobileTOC();
@@ -314,26 +291,21 @@ function initMobileTOC() {
   });
 }
 
-// Function to reinitialize TOC when content changes
 function reinitTableOfContents() {
-  // Small delay to ensure DOM is updated
   setTimeout(() => {
     initTableOfContents();
   }, 100);
 }
 
-// Initialize Table of Contents when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
   initTableOfContents();
   initMobileTOC();
 
-  // Reinitialize TOC when content might change (for dynamic content)
   if (typeof wp !== "undefined" && wp.ajax) {
     wp.ajax.addAction("content_updated", reinitTableOfContents);
   }
 });
 
-// Reinitialize TOC on window resize (in case layout changes affect heading positions)
 window.addEventListener("resize", () => {
   reinitTableOfContents();
 });

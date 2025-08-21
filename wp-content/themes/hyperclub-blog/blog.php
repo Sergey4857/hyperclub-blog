@@ -9,7 +9,7 @@ $search_query = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
 
 $args = [
     'post_type' => 'post',
-    	'posts_per_page' => 9, // Changed to 9 for 3-column display
+    	'posts_per_page' => 9,
     'paged' => $paged,
     's' => $search_query,
 ];

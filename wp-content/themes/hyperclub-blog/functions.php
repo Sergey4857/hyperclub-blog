@@ -133,18 +133,7 @@ function set_post_likes($post_id) {
     }
 }
 
-// AJAX handler for likes
-function handle_post_like() {
-    if (isset($_POST['post_id'])) {
-        $post_id = intval($_POST['post_id']);
-        set_post_likes($post_id);
-        $likes = get_post_meta($post_id, 'post_likes', true);
-        wp_send_json_success(['likes' => $likes]);
-    }
-    wp_send_json_error();
-}
-add_action('wp_ajax_post_like', 'handle_post_like');
-add_action('wp_ajax_nopriv_post_like', 'handle_post_like');
+
 
 
 

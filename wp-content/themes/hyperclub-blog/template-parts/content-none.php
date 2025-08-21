@@ -12,7 +12,7 @@
 <section class="no-results not-found">
 	<header class="page-header">
 		<h1 class="page-title"><?php esc_html_e('Nothing Found', 'hyperclub-blog'); ?></h1>
-	</header><!-- .page-header -->
+	</header>
 
 	<div class="page-content">
 		<?php
@@ -20,7 +20,7 @@
 
 			printf(
 				'<p>' . wp_kses(
-					/* translators: 1: link to WP admin new post page. */
+
 					__('Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'hyperclub-blog'),
 					array(
 						'a' => array(

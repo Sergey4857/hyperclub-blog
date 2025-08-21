@@ -40,7 +40,7 @@ if (!empty($category)) {
 	<section class="blog-search-container">
 		<div class="blog-header">
 			<h1>Blog</h1>
-			<?php get_template_part('template-parts/blog-filter'); ?>
+
 
 			<?php if (!empty($search_query)): ?>
 				<div class="search-notify">Articles containing "<?php echo esc_html($search_query); ?>"</div>
