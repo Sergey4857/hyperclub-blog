@@ -150,11 +150,12 @@ function initTableOfContents() {
   const tocContainer = document.querySelector(
     ".table-of-contents .toc-content"
   );
+  const tocWidget = document.querySelector(".table-of-contents");
   const headings = document.querySelectorAll(
     ".post-content-wrap h2, .post-content-wrap h3"
   );
 
-  if (!tocContainer || !headings.length) return;
+  if (!tocContainer || !tocWidget) return;
 
   // Clear existing content
   tocContainer.innerHTML = "";

@@ -47,15 +47,15 @@ $posttags = get_the_tags();
 
 
 		<div class="post-meta-container">
-			<div class="meta-item">
+			<div class="meta-item author-meta">
 				<span class="meta-icon author-icon"></span>
 				<span class="meta-text"><?php the_author(); ?></span>
 			</div>
-			<div class="meta-item">
+			<div class="meta-item calendar-meta">
 				<span class="meta-icon calendar-icon"></span>
 				<span class="meta-text"><?php the_time('d/m/Y'); ?></span>
 			</div>
-			<div class="meta-item">
+			<div class="meta-item ">
 				<span class="meta-icon read-icon"></span>
 				<span class="meta-text">
 					<?php
@@ -64,7 +64,7 @@ $posttags = get_the_tags();
 					$word_count = str_word_count($content);
 					$reading_speed = 220;
 					$reading_time = ceil($word_count / $reading_speed);
-					echo sprintf(__('%d min read', 'hyperclub-blog'), $reading_time);
+					echo sprintf(__('%d min', 'hyperclub-blog'), $reading_time);
 					?>
 				</span>
 			</div>
@@ -77,14 +77,14 @@ $posttags = get_the_tags();
 					if (!$views) {
 						$views = 0;
 					}
-					echo $views . ' views';
+					echo $views ;
 					?>
 				</span>
 			</div>
 			
 			<button class="toc-toggle-btn" aria-label="Open Table of Contents">
 				<span class="toc-icon"></span>
-				<span class="toc-text">TOC</span>
+			
 			</button>
 		</div>
 
@@ -144,7 +144,6 @@ $posttags = get_the_tags();
 					</button>
 					<h3>Table of Contents</h3>
 					<div class="toc-content">
-						<p>Content will be added automatically</p>
 					</div>
 				</div>
 

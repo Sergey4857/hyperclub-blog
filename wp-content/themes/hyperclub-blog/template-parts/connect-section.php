@@ -15,9 +15,9 @@
           </p>
           
           <div class="connect-button-container">
-            <button type="button" class="connect-button" aria-label="Join to Hyper Club">
+            <a href="https://www.hyperclub.xyz/"   class="connect-button" aria-label="Join to Hyper Club">
               Join to Hyper Club
-            </button>
+            </a>
           </div>
         </div>
       </div>
