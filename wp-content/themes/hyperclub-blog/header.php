@@ -11,7 +11,7 @@
   <header class="header-section">
     <div class="header">
 
-      <a href="/" class="logo-wrap">
+      <a href="https://www.hyperclub.xyz" class="logo-wrap">
         <div class="logo">
           <img class="logo-image" alt="logo"
             src="<?php echo get_template_directory_uri() . "/src/icons/logo.svg" ?>" />Hyper Club
@@ -23,7 +23,7 @@
         <?php
         wp_nav_menu(array(
           'theme_location' => 'header-nav',
-       
+
         ));
         ?>
       </nav>
@@ -51,17 +51,17 @@
             <img src="<?php echo get_template_directory_uri() . "/src/icons/close.svg" ?>" alt="close" />
           </div>
           <div class="burger-nav">
- <?php
-        wp_nav_menu(array(
-          'theme_location' => 'header-nav',
-       
-        ));
-        ?>
+            <?php
+            wp_nav_menu(array(
+              'theme_location' => 'header-nav',
+
+            ));
+            ?>
           </div>
 
-           <a href="/login" class="login-button-mobile">
-        Login
-      </a>
+          <a href="/login" class="login-button-mobile">
+            Login
+          </a>
 
         </div>
       </div>
